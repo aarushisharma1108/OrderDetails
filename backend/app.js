@@ -18,7 +18,7 @@ const key=req.query.apikey||req.headers['x-api-key']||req.headers['botauth'];
 if(key==API_KEY)
   next();
 else
-res.status(401).send("Unauthorized user");
+res.status(401).json({message:"Unauthorized user"});
 }
 
 app.get('/',(req,res)=>{
@@ -31,7 +31,7 @@ const id=parseInt(orderid);
 console.log(id);
 
 if(!id){
-   return res.send("The order id is invalid. No such order exist");
+   return res.json({message:"The order id is invalid. No such order exists"});
 }
 const data=fs.readFileSync(path.join(filepath,'order.json'),'utf-8');
 const orders=JSON.parse(data);
@@ -39,9 +39,9 @@ const orders=JSON.parse(data);
 const found = orders.find(order=>order.orderId===id);
 
   if (found) {
-    return res.send("Your order is dispatched. Please wait for a few more days");
+    return res.json({message:"Your order is dispatched. Please wait for a few more days"});
   } else {
-   return res.send("Invalid order details");
+   return res.json({message:"Invalid order details"});
   }
 })
 
