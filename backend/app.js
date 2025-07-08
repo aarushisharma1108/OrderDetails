@@ -14,7 +14,7 @@ const API_KEY=process.env.API_KEY;
 
 //we need to add an authorize middleware which will be passed in api endpoint.
 const authorize=(req,res,next)=>{
-const key=req.query.apikey;
+const key=req.query.apikey||req.headers['x-api-key']||req.headers['botauth'];
 if(key==API_KEY)
   next();
 else
