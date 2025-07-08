@@ -41,7 +41,7 @@ const found = orders.find(order=>order.orderId===id);
   if (found) {
     return res.json({message:"Your order is dispatched. Please wait for a few more days"});
   } else {
-   return res.json({message:"Invalid order details"});
+   return res.status(400).json({message:"Invalid order details"});
   }
 })
 
