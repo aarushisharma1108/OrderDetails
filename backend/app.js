@@ -31,7 +31,7 @@ const id=parseInt(orderid);
 console.log(id);
 
 if(!id){
-   return res.json({status:false,message:"The order id is invalid. No such order exists"});
+   return res.json({status:false});
 }
 const data=fs.readFileSync(path.join(filepath,'order.json'),'utf-8');
 const orders=JSON.parse(data);
@@ -39,9 +39,9 @@ const orders=JSON.parse(data);
 const found = orders.find(order=>order.orderId===id);
 
   if (found) {
-    return res.json({status:true,message:"Your order is dispatched. Please wait for a few more days"});
+    return res.json({status:true});
   } else {
-   return res.status(400).json({status:false,message:"Invalid order details"});
+   return res.json({status:false});
   }
 })
 
