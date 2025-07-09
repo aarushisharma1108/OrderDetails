@@ -36,7 +36,7 @@ if(!id){
 const data=fs.readFileSync(path.join(filepath,'order.json'),'utf-8');
 const orders=JSON.parse(data);
 
-const found = orders.find(order=>order.orderId===id);
+const found = orders.find(order=>order.orderId===id)!==undefined;
 
   if (found) {
     return res.json({status:true});
